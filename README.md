@@ -18,8 +18,6 @@ Project thực hiện train trên 6.800 clip bạo lực, thực hiện cho qua 
  - [Visual Studio 2019 Link](https://drive.google.com/file/d/15hc6zX2mkiTod1af8wgYylzjBcmCjM3R/view?usp=sharing)
  - [Cuda version 10.1 Link](https://drive.google.com/file/d/1xzEbs0DKMfNISg7lsq8g9hWHCTRra1sU/view?usp=sharing)
  - [CuDNN version 7.1 Link](https://drive.google.com/file/d/18J_wtBnElscEUN4JZCnd3Yo2DudkJLBU/view?usp=sharing)
- - [Link code tất cả phiên bản ổn định Link Github](https://github.com/vietsaclo/HanhViBaoLuc.git)
- - [Link code tất cả phiên bản mới nhất Link Github](https://github.com/vietsaclo/HanhViBaoLuc/tree/develop)
  - [Link model yolo](https://drive.google.com/file/d/1FT6l9Wg_PIwgSMWD9XaQIs-IQN4PaXiz/view?usp=sharing)
  - [Link Model train .h5](https://drive.google.com/file/d/1IJ4O3RhpdK6bL2ISW70GtO7OyhATcQIC/view?usp=sharing)
 
