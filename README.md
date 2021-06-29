@@ -1,5 +1,5 @@
-# Nhận Biết Hành Vi Bạo Lực
-Project thực hiện train trên 6.800 clip bạo lực, thực hiện cho qua **VGG16** để lấy mẫu dữ liệu và sau đó cho qua **LSTM** để huấn luyện. 
+# Theo Vết Đối Tượng & Phân Loại Hành Vi Bạo Lực
+Project thực hiện train trên 7240 clip bạo lực,sau đó đem đi theo vết áp dụng thuật toán kalmain rồi thực hiện cho qua **VGG16** để lấy mẫu dữ liệu và sau đó cho qua **LSTM** để huấn luyện. 
 
 ***Thành viên thực hiện:*** 
 
@@ -7,7 +7,7 @@ Project thực hiện train trên 6.800 clip bạo lực, thực hiện cho qua 
  - Ngô Huy Thắng - 09DHTH8 - HUFI
  - Ngô Khiêm - 09DHTH2 - HUFI
 ## Từng bước thực hiện trong thuật toán 1
-![enter image description here](https://raw.githubusercontent.com/vietsaclo/HanhViBaoLuc/main/FileInput/Imgs/01.png)
+![enter image description here](https://user-images.githubusercontent.com/75923948/123732930-da254f80-d8c4-11eb-85e5-afa069e09fdd.png)
 ## Từng bước thực hiện trong thuật toán 2
 ![enter image description here](https://raw.githubusercontent.com/vietsaclo/HanhViBaoLuc/main/FileInput/Imgs/01.png)
 ## Mô hình tổng quát của thuật toán
