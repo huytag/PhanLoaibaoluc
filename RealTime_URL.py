@@ -12,8 +12,8 @@ import threading
 from threading import Thread
 
 # load weights and set defaults
-config_path = 'config/yolov3.cfg'
-weights_path = 'config/yolov3.weights'
+config_path = 'config/yolov3-tiny.cfg'
+weights_path = 'config/yolov3-tiny.weights'
 class_path = 'config/yolov3.txt'
 img_size = 416
 conf_thres = 0.5
@@ -21,34 +21,8 @@ nms_thres = 0.4
 
 
 
-
-# Giai phong bo nho Cuda
-# import torch
-# from GPUtil import showUtilization as gpu_usage
-# from numba import cuda
-#
-# def free_gpu_cache():
-#     print("Initial GPU Usage")
-#     gpu_usage()
-#
-#     torch.cuda.empty_cache()
-#
-#     cuda.select_device(0)
-#     cuda.close()
-#     cuda.select_device(0)
-#
-#     print("GPU Usage after emptying the cache")
-#     gpu_usage()
-#
-# free_gpu_cache()
-##############################
-
-
-
-
-
 # load model and put into eval mode
-model = Darknet(config_path, img_size=img_size)
+model = Darknet(config_path, img_size= img_size)
 model.load_weights(weights_path)
 model.cuda()
 model.eval()
@@ -76,7 +50,9 @@ def get_output_layers(net):
 
 # classes = utils.load_classes(class_path)
 
+
 Tensor = torch.cuda.FloatTensor
+
 
 
 def detect_image(img):
@@ -227,7 +203,7 @@ def funget10F(frames: list):
     result.append(frames[15])
     result.append(frames[18])
     result.append(frames[21])
-    result.append(frames[24])
+    result.append(frames[23])
     return result
 
 # Test Model
@@ -403,7 +379,7 @@ def fun_RealTime_Model(URL_VIDEO):
 
 if __name__ == "__main__":
     fun_RealTime_Model(0)
-    # fun_RealTime('D:/DESKTOP/Clip_224x224_7240clip_V7/na/L32_0053.avi')
+    # fun_RealTime_Model('D:/DESKTOP/Clip_224x224_7240clip_V7/na/L32_0053.avi')
     # Remove_Backgound('D:/DESKTOP/Test/Test/L22_0001.avi')
 
 
