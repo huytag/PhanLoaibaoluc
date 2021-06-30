@@ -220,6 +220,7 @@ def fun_getTransferValue_EDIT(pathVideoOrListFrame, modelVGG16):
             except:
                 break
 
+    # NUM_FRAME_INPUT_LSTM Nho thay lai cai nay khi on
     if len(images) != NUM_FRAME_INPUT_LSTM:
         lib.fun_print(name='Frames count: ' + pathVideoOrListFrame, value=len(images))
         return None

@@ -12,7 +12,7 @@ from Modules.MyThreading import MyThreadingVideo
 from threading import Thread
 from time import sleep
 from datetime import datetime
-from HanhViBaoLuc import RealTime_URL as RT
+import RealTime_URL as RT
 
 WINDOWS_WIDTH = int(1280 * 0.6)
 WINDOWS_HEIGHT = int(720 * 0.6)
