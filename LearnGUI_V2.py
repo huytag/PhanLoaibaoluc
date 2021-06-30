@@ -14,8 +14,6 @@ from time import sleep
 from datetime import datetime
 from HanhViBaoLuc import RealTime_URL as RT
 
-
-
 WINDOWS_WIDTH = int(1280 * 0.6)
 WINDOWS_HEIGHT = int(720 * 0.6)
 URL_VIDEO = 'FileInput/006.avi'
@@ -61,7 +59,7 @@ class ChoseSourceWindow:
         libs.fun_makeCenter(self.master)
         self.DIALOG_OK = False
         self.RETURN_RESULT = 'NULL'
-        self.iconCheck= PhotoImage(file='FileInput/Icons/ic_check2.png').subsample(3, 3)
+        self.iconCheck = PhotoImage(file='FileInput/Icons/ic_check2.png').subsample(3, 3)
         self.iconMp4 = PhotoImage(file='FileInput/Icons/ic_mp4.png').subsample(3, 3)
         self.iconCamera = PhotoImage(file='FileInput/Icons/ic_mp4.png').subsample(3, 3)
 
@@ -75,7 +73,7 @@ class ChoseSourceWindow:
         self.master.grid_rowconfigure(0, weight=1)
 
         # frame 1
-        #màu khung của Frame taio l
+        # màu khung của Frame taio l
         self.frame1 = Frame(self.frame, bg='#4c5254', padx=10, pady=10)
         self.frame2 = Frame(self.frame, bg='#81968e', padx=10, pady=10)
         self.frame3 = Frame(self.frame, bg='#4c5254', padx=10, pady=10)
@@ -103,11 +101,11 @@ class ChoseSourceWindow:
         self.tbSource = EntryWithPlaceholder(self.frame2, 'IP WEBCAM EXAMPLE: 192.168.1.1')
         self.tbSource.grid(row=0, column=0, sticky='nsew')
 
-        #BTN Check
+        # BTN Check
         self.btnSource = Button(self.frame2,
                                 command=self.btnGetPathFromSourceClicked, cursor=CURSOR_DF,
-                                image= self.iconCheck,
-                                compound= CENTER,
+                                image=self.iconCheck,
+                                compound=CENTER,
                                 bg='#81968e'
                                 )
         self.btnSource.grid(row=0, column=1, sticky='nsew')
@@ -133,13 +131,13 @@ class ChoseSourceWindow:
 
     def fun_CheckIsUsingCamChange(self):
         if self.isUsingIpWebcam.get() == 0:
-            self.btnSource.config(image= self.iconCheck)
+            self.btnSource.config(image=self.iconCheck)
             holder = 'IP WEBCAM EXAMPLE: 192.168.1.1'
-            self.checkDir.config(bg= 'white')
+            self.checkDir.config(bg='white')
         else:
-            self.btnSource.config(image= self.iconMp4)
+            self.btnSource.config(image=self.iconMp4)
             holder = 'EXAMPLE: C:/VIDEO/DETECTION.MP4'
-            self.checkDir.config(bg= '#81968e')
+            self.checkDir.config(bg='#81968e')
 
         self.fun_reloadHolderSource(source=holder)
 
@@ -150,14 +148,15 @@ class ChoseSourceWindow:
 
     def fun_checkVideoFromSource(self, source: str):
         try:
-            frames = libs.fun_getFramesOfVideo(path=source, count=10)
-            messagebox.showinfo('Notification!', 'Check Video Load OK, Video Size: {0}'.format(frames[0].shape))
+            # frames = libs.fun_getFramesOfVideo(path=source, count=24)
+            messagebox.showinfo('Notification!', 'Check Video Load OK, Video Size: {0}')
             return True
         except:
             messagebox.showerror('Error!', 'Request is not accepted')
             return False
+
     def fun_getURL_IPCam(self, ip: str):
-        return '{0}{1}{2}'.format('http://', ip, ':8080/video')
+        return '{0}{1}{2}'.format('http://', ip, ':4747/video')
 
     def btnLoadVideoClicked(self):
         if self.isUsingIpWebcam.get() == 0:
@@ -165,14 +164,14 @@ class ChoseSourceWindow:
         self.DIALOG_OK = True
         self.master.destroy()
 
-
     def btnGetPathFromSourceClicked(self):
         if self.isUsingIpWebcam.get() == 0:
             url = self.fun_getURL_IPCam(ip=self.tbSource.get())
             # self.RETURN_RESULT = 'FileInput/Test/LtestFull.avi'
         else:
             self.RETURN_RESULT = filedialog.askopenfilename(initialdir="FileInput/Test/", title="Select file",
-                                                            filetypes=(("AVI files", "*.AVI"), ("MP4 files", "*.MP4"), ("ALL files", "*.*")))
+                                                            filetypes=(("AVI files", "*.AVI"), ("MP4 files", "*.MP4"),
+                                                                       ("ALL files", "*.*")))
             self.fun_reloadHolderSource(source=self.RETURN_RESULT)
             url = self.RETURN_RESULT
         isCheck = self.fun_checkVideoFromSource(source=url)
@@ -180,8 +179,10 @@ class ChoseSourceWindow:
             self.btnOk.config(state='normal', cursor=CURSOR_DF)
         else:
             self.btnOk.config(state='disable', cursor=CURSOR_NO)
+
     def close_windows(self):
         self.master.destroy()
+
 
 class ChoseSourceWindow_Camera:
     def __init__(self, master):
@@ -193,7 +194,7 @@ class ChoseSourceWindow_Camera:
         libs.fun_makeCenter(self.master)
         self.DIALOG_OK = False
         self.RETURN_RESULT = 'NULL'
-        self.iconCheck= PhotoImage(file='FileInput/Icons/ic_check2.png').subsample(3, 3)
+        self.iconCheck = PhotoImage(file='FileInput/Icons/ic_check2.png').subsample(3, 3)
         self.iconMp4 = PhotoImage(file='FileInput/Icons/ic_mp4.png').subsample(3, 3)
         self.iconCamera = PhotoImage(file='FileInput/Icons/ic_mp4.png').subsample(3, 3)
 
@@ -226,11 +227,11 @@ class ChoseSourceWindow_Camera:
         self.tbSource = EntryWithPlaceholder(self.frame2, 'IN TO WEBCAM')
         self.tbSource.grid(row=0, column=0, sticky='nsew')
 
-        #BTN Check
+        # BTN Check
         self.btnSource = Button(self.frame2,
                                 command=self.btnGetPathFromSourceClicked, cursor=CURSOR_DF,
-                                image= self.iconCheck,
-                                compound= CENTER,
+                                image=self.iconCheck,
+                                compound=CENTER,
                                 bg='#81968e'
                                 )
         self.btnSource.grid(row=0, column=1, sticky='nsew')
@@ -260,14 +261,16 @@ class ChoseSourceWindow_Camera:
         except:
             messagebox.showerror('Error!', 'Request is not accepted')
             return False
+
     def fun_getURL_IPCam(self, ip: str):
-        return '{0}{1}{2}'.format('http://', ip, ':8080/video')
+        return '{0}{1}{2}'.format('http://', ip, ':4747/video')
 
     def btnLoadVideoClicked(self):
         if self.isUsingIpWebcam.get() == 0:
             self.RETURN_RESULT = self.fun_getURL_IPCam(ip=self.tbSource.get())
         self.DIALOG_OK = True
         self.master.destroy()
+
     def btnGetPathFromSourceClicked(self):
         self.RETURN_RESULT = 'FileInput/Imgs/L22_0001.avi'
         self.fun_reloadHolderSource(source=self.RETURN_RESULT)
@@ -277,8 +280,10 @@ class ChoseSourceWindow_Camera:
             self.btnOk.config(state='normal', cursor=CURSOR_DF)
         else:
             self.btnOk.config(state='disable', cursor=CURSOR_NO)
+
     def close_windows(self):
         self.master.destroy()
+
 
 class MyApp:
     def __init__(self, title: str = 'GUI HUMAN''S VIOLENCE DETECTIONS'):
@@ -309,50 +314,50 @@ class MyApp:
             self.lstm_model = cf.fun_loadModelLSTM()
             self.lstm_model.summary()
         except:
-            print('# '*20)
-            libs.fun_print(name= 'Load Model LSTM', value='File Not Found!');
+            print('# ' * 20)
+            libs.fun_print(name='Load Model LSTM', value='File Not Found!');
             return
 
         self.initComponent()
 
-    def fun_updateTimeDown(self,):
+    def fun_updateTimeDown(self, ):
         while self.isChoiseTimeDown.get():
             _, current = libs.fun_getCurrentTime()
-            isContinue, self.down = libs.fun_dayMinus(dayFrom= current, dayTo= self.dayTo)
+            isContinue, self.down = libs.fun_dayMinus(dayFrom=current, dayTo=self.dayTo)
             try:
                 if not isContinue:
                     self.isChoiseTimeDown.set(0)
-                    self.cbThoiGianTat.config(bg= 'white')
+                    self.cbThoiGianTat.config(bg='white')
                     self.lbThoiGianDen.destroy()
                     self.lbThoiGianConLai.destroy()
                     self.fun_ngatKetNoi()
                     self.fun_ngatKetNoi()
                     return
-                self.lbThoiGianConLai.config(text= 'Time remaining: {0} s'.format(self.down))
+                self.lbThoiGianConLai.config(text='Time remaining: {0} s'.format(self.down))
             except:
-                print('Thread update time down stoped but not working correct!'+ Thread.name)
+                print('Thread update time down stoped but not working correct!' + Thread.name)
             sleep(1)
 
-    def fun_hienThoiGianDen_Con(self, timeDown: str, hourDown:int, minuteDown:int):
+    def fun_hienThoiGianDen_Con(self, timeDown: str, hourDown: int, minuteDown: int):
         self.lbThoiGianConLai = Label(self.containerTongHopMoTaPhanDoanDanh,
-        text= 'Time remaining: {0} s'.format(self.down),
-        padx= 10, pady= 10,
-        font=('Helvetica', 18, 'bold'),
-        anchor= 'w'
-        )
+                                      text='Time remaining: {0} s'.format(self.down),
+                                      padx=10, pady=10,
+                                      font=('Helvetica', 18, 'bold'),
+                                      anchor='w'
+                                      )
 
         self.lbThoiGianDen = Label(self.containerTongHopMoTaPhanDoanDanh,
-        text= 'Off on time: {0} {1}h : {2}m'.format(timeDown, hourDown, minuteDown),
-        padx= 10, pady= 10,
-        font=('Helvetica', 18, 'bold'),
-        anchor= 'w'
-        )
+                                   text='Off on time: {0} {1}h : {2}m'.format(timeDown, hourDown, minuteDown),
+                                   padx=10, pady=10,
+                                   font=('Helvetica', 18, 'bold'),
+                                   anchor='w'
+                                   )
 
-        self.lbThoiGianDen.grid(row= 1, column= 0, sticky= 'nsew')
-        self.lbThoiGianConLai.grid(row= 2, column= 0, sticky= 'nsew')
+        self.lbThoiGianDen.grid(row=1, column=0, sticky='nsew')
+        self.lbThoiGianConLai.grid(row=2, column=0, sticky='nsew')
 
-        self.containerTongHopMoTaPhanDoanDanh.grid_rowconfigure(1, weight= 1)
-        self.containerTongHopMoTaPhanDoanDanh.grid_rowconfigure(2, weight= 1)
+        self.containerTongHopMoTaPhanDoanDanh.grid_rowconfigure(1, weight=1)
+        self.containerTongHopMoTaPhanDoanDanh.grid_rowconfigure(2, weight=1)
 
     def fun_chonThoiGianDen(self, ):
         isChoise = self.isChoiseTimeDown.get()
@@ -362,22 +367,23 @@ class MyApp:
         if not isChoise:
             self.lbThoiGianDen.destroy()
             self.lbThoiGianConLai.destroy()
-            self.cbThoiGianTat.config(bg= 'white')
+            self.cbThoiGianTat.config(bg='white')
             return
-        
-        self.cbThoiGianTat.config(bg= '#4c5254')
+
+        self.cbThoiGianTat.config(bg='#4c5254')
         # hien thi form chon thoi gian
         top = Toplevel(self.root)
         cal = Calendar(top,
-                    font="Arial 14", selectmode='day',
-                    cursor="hand1",)
+                       font="Arial 14", selectmode='day',
+                       cursor="hand1", )
         cal.selection_set(datetime.now())
         cal.pack(fill="both", expand=True)
-        self.tbHour = EntryWithPlaceholder(top, placeholder= 'HOURS SELECTED')
-        self.tbHour.pack(fill= 'both', expand= True, padx= 10, pady= 10)
-        self.tbMinute = EntryWithPlaceholder(top, placeholder= 'MINUTE SELECTED')
-        self.tbMinute.pack(fill= 'both', expand= True, padx= 10, pady= 10)
-        Button(top, text="APPLY NOW", command= self.fun_btnOkChoiDataTimeDownClicked).pack(fill= 'both', expand= True, padx= 10, pady= 10)
+        self.tbHour = EntryWithPlaceholder(top, placeholder='HOURS SELECTED')
+        self.tbHour.pack(fill='both', expand=True, padx=10, pady=10)
+        self.tbMinute = EntryWithPlaceholder(top, placeholder='MINUTE SELECTED')
+        self.tbMinute.pack(fill='both', expand=True, padx=10, pady=10)
+        Button(top, text="APPLY NOW", command=self.fun_btnOkChoiDataTimeDownClicked).pack(fill='both', expand=True,
+                                                                                          padx=10, pady=10)
         self.cal = cal
         self.ChoiseTimeDownWindow = top
         top.grab_set()
@@ -386,27 +392,27 @@ class MyApp:
         if self.TIME_DOWN is None:
             messagebox.showwarning('Notification!', 'Time to automatically turn off failure')
             self.isChoiseTimeDown.set(0)
-            self.cbThoiGianTat.config(bg= 'white')
+            self.cbThoiGianTat.config(bg='white')
             return
 
         # khiem tra thoi gian hop le tai day
         _, curent = libs.fun_getCurrentTime()
         ymd = str(self.TIME_DOWN).split('-')
         dayTo = '{0}_{1}_{2}_{3}_{4}_{5}'.format(ymd[0], ymd[1], ymd[2], self.hourDown, self.minuteDown, 0)
-        isCheck, down = libs.fun_dayMinus(dayFrom= curent, dayTo= dayTo)
+        isCheck, down = libs.fun_dayMinus(dayFrom=curent, dayTo=dayTo)
 
         if not isCheck:
             messagebox.showerror('Notification!', 'Time to automatically turn off failure')
             self.isChoiseTimeDown.set(0)
-            self.cbThoiGianTat.config(bg= 'white')
+            self.cbThoiGianTat.config(bg='white')
             return
 
         self.dayTo = dayTo
         self.down = down
 
-        self.fun_hienThoiGianDen_Con(timeDown= self.TIME_DOWN, hourDown= self.hourDown, minuteDown= self.minuteDown)
+        self.fun_hienThoiGianDen_Con(timeDown=self.TIME_DOWN, hourDown=self.hourDown, minuteDown=self.minuteDown)
         # start new thread update downtime
-        self.threadUpdateTime = Thread(target= self.fun_updateTimeDown)
+        self.threadUpdateTime = Thread(target=self.fun_updateTimeDown)
         self.threadUpdateTime.setDaemon(True)
         self.threadUpdateTime.start()
 
@@ -418,7 +424,8 @@ class MyApp:
             hour = int(self.tbHour.get())
             minu = int(self.tbMinute.get())
         except:
-            messagebox.showwarning('Error!', 'Error white pare hour and minute-> but default [ {0} : {1} ]'.format(hour, minu))
+            messagebox.showwarning('Error!',
+                                   'Error white pare hour and minute-> but default [ {0} : {1} ]'.format(hour, minu))
 
         self.hourDown = hour
         self.minuteDown = minu
@@ -467,7 +474,7 @@ class MyApp:
                                          image=iconChonNguonDuLieu,
                                          compound=LEFT
                                          )
-        self.btnChonNguonDuLieu.image=iconChonNguonDuLieu
+        self.btnChonNguonDuLieu.image = iconChonNguonDuLieu
         self.btnChonNguonDuLieu.grid(row=0, column=0, sticky='nsew')
 
         # Giao dien cho nut load lai video
@@ -484,35 +491,35 @@ class MyApp:
                                  image=iconTaiLaiVideo,
                                  compound=CENTER
                                  )
-        self.btnRefresh.image= iconTaiLaiVideo
+        self.btnRefresh.image = iconTaiLaiVideo
         self.btnRefresh.grid(row=0, column=1, sticky='nsew')
 
         # Giao dien cho nut ngat ket noi
         iconNgatKetNoi = PhotoImage(file='FileInput/Icons/ic_powerof.png')
         iconNgatKetNoi = iconNgatKetNoi.subsample(1, 1)
         self.btnDisconection = Button(self.containerChonNguonDuLieu, padx=10,
-                             pady=10,
-                             # bg='green',
-                             # text='Ngat Ke Noi',
-                             image=iconNgatKetNoi,
-                             command=self.fun_ngatKetNoi,
-                             cursor=CURSOR_DF,
-                             compound=CENTER
-                             )
+                                      pady=10,
+                                      # bg='green',
+                                      # text='Ngat Ke Noi',
+                                      image=iconNgatKetNoi,
+                                      command=self.fun_ngatKetNoi,
+                                      cursor=CURSOR_DF,
+                                      compound=CENTER
+                                      )
 
-        self.btnDisconection.imgage=iconNgatKetNoi
+        self.btnDisconection.imgage = iconNgatKetNoi
         self.btnDisconection.grid(row=0, column=2, sticky='nsew')
 
         # Giao dien cho nut mo camera May tinh
         iconCamera = PhotoImage(file='FileInput/Icons/ic_camera.png')
         iconCamera = iconCamera.subsample(1, 1)
         self.btnCamera = Button(self.containerChonNguonDuLieu, padx=10,
-                                      pady=10,
-                                      image=iconCamera,
-                                      command=self.fun_chonNguonDuLieu_camera,
-                                      cursor=CURSOR_DF,
-                                      compound=RIGHT
-                                      )
+                                pady=10,
+                                image=iconCamera,
+                                command=self.fun_chonNguonDuLieu_camera,
+                                cursor=CURSOR_DF,
+                                compound=RIGHT
+                                )
         self.btnCamera.imgage = iconCamera
         self.btnCamera.grid(row=0, column=3, sticky='nsew')
 
@@ -522,7 +529,7 @@ class MyApp:
         self.containerChonNguonDuLieu.grid_rowconfigure(0, weight=1)
 
         # Container con cua phai
-        #Màu khung của My ap
+        # Màu khung của My ap
         self.containerPhanDoanBaoLuc = Frame(self.containerPhai, bg='#99f2c1', padx=10, pady=10)
 
         self.containerTongHopMoTaPhanDoanDanh = Frame(self.containerPhai, bg='#81968e', padx=10, pady=10)
@@ -532,15 +539,15 @@ class MyApp:
 
         # Container con cua container containerTongHopMoTaPhanDoanDanh
         self.cbThoiGianTat = Checkbutton(self.containerTongHopMoTaPhanDoanDanh,
-        text= 'TIME SELECTION AUTO OFF', padx= 10, pady= 10,
-        font=('Helvetica', 18, 'bold'),
-        variable= self.isChoiseTimeDown,
-        command= self.fun_chonThoiGianDen,
-        )
-        self.cbThoiGianTat.grid(row= 0, column= 0, sticky= 'nsew')
+                                         text='TIME SELECTION AUTO OFF', padx=10, pady=10,
+                                         font=('Helvetica', 18, 'bold'),
+                                         variable=self.isChoiseTimeDown,
+                                         command=self.fun_chonThoiGianDen,
+                                         )
+        self.cbThoiGianTat.grid(row=0, column=0, sticky='nsew')
 
-        self.containerTongHopMoTaPhanDoanDanh.grid_rowconfigure(0, weight= 1)
-        self.containerTongHopMoTaPhanDoanDanh.grid_columnconfigure(0, weight= 1)
+        self.containerTongHopMoTaPhanDoanDanh.grid_rowconfigure(0, weight=1)
+        self.containerTongHopMoTaPhanDoanDanh.grid_columnconfigure(0, weight=1)
 
         # Label hien thi loai bao luc gi
         self.lbKetQuaBaoLuc = Label(self.containerChucNang,
@@ -572,29 +579,32 @@ class MyApp:
         self.fun_taiGiaoDien17CapDo()
 
     def fun_initGUI(self):
-        img = cv2.imread(filename= 'FileInput/Imgs/ImgNotFound2.jpg')
-        img1 = cv2.imread(filename= 'FileInput/Imgs/ImgNotFound.jpg')
-        size = libs.fun_getSizeOfFrame(frame= img)
-        self.imgNotFound = libs.fun_cv2_imageArrayToImage(containerFather= self.containerVideoCamera, frame= img, reSize= size)
-        self.imgNotFound1 = libs.fun_cv2_imageArrayToImage(containerFather= self.containerVideoCamera, frame= img1, reSize= (int(size[0] * 0.2), int(size[1] * 0.2)))
-        self.lbVideoFrames.config(image= self.imgNotFound)
-        self.lbVideoFrames1.config(image= self.imgNotFound1)
-        self.lbVideoFrames2.config(image= self.imgNotFound1)
-        self.lbVideoFrames3.config(image= self.imgNotFound1)
-        self.lbVideoFrames4.config(image= self.imgNotFound1)
+        img = cv2.imread(filename='FileInput/Imgs/ImgNotFound2.jpg')
+        img1 = cv2.imread(filename='FileInput/Imgs/ImgNotFound.jpg')
+        size = libs.fun_getSizeOfFrame(frame=img)
+        self.imgNotFound = libs.fun_cv2_imageArrayToImage(containerFather=self.containerVideoCamera, frame=img,
+                                                          reSize=size)
+        self.imgNotFound1 = libs.fun_cv2_imageArrayToImage(containerFather=self.containerVideoCamera, frame=img1,
+                                                           reSize=(int(size[0] * 0.2), int(size[1] * 0.2)))
+        self.lbVideoFrames.config(image=self.imgNotFound)
+        self.lbVideoFrames1.config(image=self.imgNotFound1)
+        self.lbVideoFrames2.config(image=self.imgNotFound1)
+        self.lbVideoFrames3.config(image=self.imgNotFound1)
+        self.lbVideoFrames4.config(image=self.imgNotFound1)
 
     def fun_ngatKetNoi(self):
         if self.stopEvent is None:
             return
         self.stopEvent.set()
         self.fun_initGUI()
+
     def fun_taiLaiVideo(self):
         self.btnRefresh.config(state='disable', cursor=CURSOR_NO)
         self.videoLoadingThreading()
 
     def fun_taiGiaoDien17CapDo(self):
         # Giao dien cho container 17 Cap do
-        pass # Nothing to do
+        pass  # Nothing to do
 
     # event cho button chon nguon du lieu
     def fun_chonNguonDuLieu(self):
@@ -635,37 +645,38 @@ class MyApp:
 
         # Thuc hien load video bang threading va xem ket qua
         # self.videoLoadingThreading()
-    def fun_kichHoatGPU(self,):
+
+    def fun_kichHoatGPU(self, ):
         # khoi tao kich hoat
         self.ACTIVE_OK = False
 
         # show by threading
-        t_loading = threading.Thread(target= self.fun_showLoadingCMD, args=())
+        t_loading = threading.Thread(target=self.fun_showLoadingCMD, args=())
         t_loading.setDaemon(True)
         t_loading.start()
 
         # kich hoat GPU
         MAX_COUNT_ACTIVE = 5
         for _ in range(MAX_COUNT_ACTIVE):
-            _25F = libs.fun_getFramesOfVideo(self.URL_VIDEO, count= 10)
-            transfer = cf.fun_getTransferValue_EDIT(pathVideoOrListFrame= _25F, modelVGG16= self.vgg16_model);
-            libs.fun_predict(modelLSTM= self.lstm_model, transferValue= transfer, isPrint= True)
+            _25F = libs.fun_getFramesOfVideo(self.URL_VIDEO, count=10)
+            transfer = cf.fun_getTransferValue_EDIT(pathVideoOrListFrame=_25F, modelVGG16=self.vgg16_model);
+            libs.fun_predict(modelLSTM=self.lstm_model, transferValue=transfer, isPrint=True)
 
         # OK
         self.ACTIVE_OK = True
 
-    def fun_showLoadingCMD(self,):
+    def fun_showLoadingCMD(self, ):
         while not self.ACTIVE_OK:
             os.system("start /wait cmd /c LoadingCMD.py")
         self.videoLoadingThreading()
 
-    def fun_kichHoatGPU_Threading(self,):
+    def fun_kichHoatGPU_Threading(self, ):
         t_kichHoatGPU = threading.Thread(target=self.fun_kichHoatGPU, args=())
         t_kichHoatGPU.setDaemon(True)
         t_kichHoatGPU.start()
 
     def makePhanDoanBaoLucGUI6(self):
-        self.treeAction = TreeActionDetection(containerFather= self.containerPhanDoanBaoLuc)
+        self.treeAction = TreeActionDetection(containerFather=self.containerPhanDoanBaoLuc)
 
         self.frameVideo1 = Frame(self.containerPhanDoanBaoLuc, padx=10, pady=10, bg='white')
         self.frameVideo2 = Frame(self.containerPhanDoanBaoLuc, padx=10, pady=10, bg='#81968e')
@@ -712,10 +723,14 @@ class MyApp:
         self.frameVideo4.grid_columnconfigure(0, weight=1)
 
         self.arrThread = []
-        thread1 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo1, lbShowKetQua= self.lbKetQuaBaoLuc, vgg16_model= self.vgg16_model, lstm_model= self.lstm_model, treeAction= self.treeAction)
-        thread2 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo2, lbShowKetQua= self.lbKetQuaBaoLuc, vgg16_model= self.vgg16_model, lstm_model= self.lstm_model, treeAction= self.treeAction)
-        thread3 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo3, lbShowKetQua= self.lbKetQuaBaoLuc, vgg16_model= self.vgg16_model, lstm_model= self.lstm_model, treeAction= self.treeAction)
-        thread4 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo4, lbShowKetQua= self.lbKetQuaBaoLuc, vgg16_model= self.vgg16_model, lstm_model= self.lstm_model, treeAction= self.treeAction)
+        thread1 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo1, lbShowKetQua=self.lbKetQuaBaoLuc,
+                                   vgg16_model=self.vgg16_model, lstm_model=self.lstm_model, treeAction=self.treeAction)
+        thread2 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo2, lbShowKetQua=self.lbKetQuaBaoLuc,
+                                   vgg16_model=self.vgg16_model, lstm_model=self.lstm_model, treeAction=self.treeAction)
+        thread3 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo3, lbShowKetQua=self.lbKetQuaBaoLuc,
+                                   vgg16_model=self.vgg16_model, lstm_model=self.lstm_model, treeAction=self.treeAction)
+        thread4 = MyThreadingVideo(lbShow=None, lbFather=self.frameVideo4, lbShowKetQua=self.lbKetQuaBaoLuc,
+                                   vgg16_model=self.vgg16_model, lstm_model=self.lstm_model, treeAction=self.treeAction)
         self.arrThread.append(thread1)
         self.arrThread.append(thread3)
         self.arrThread.append(thread4)
@@ -738,7 +753,7 @@ class MyApp:
         xoayVong = 0
         frames = []
         while not self.stopEvent.is_set() and self.isContinue:
-            image = libs.fun_cv2_imageArrayToImage(containerFather= self.containerVideoCamera, frame= self.frame.copy())
+            image = libs.fun_cv2_imageArrayToImage(containerFather=self.containerVideoCamera, frame=self.frame.copy())
             self.lbVideoFrames.config(image=image)
             self.lbVideoFrames.image = image
             isContinue, self.frame = self.videoCap.read()
@@ -769,6 +784,7 @@ class MyApp:
         self.videoCap.release()
         self.root.destroy()
         sys.exit(0)
+
 
 if __name__ == '__main__':
     if IS_USING_WEBCAM:
