@@ -1,4 +1,4 @@
-# Nhận Biết Hành Vi Bạo Lực
+# Theo Vết Đối Tượng & Phân Loại Hành Vi Bạo Lực
 Project thực hiện train trên 7240 clip bạo lực,sau đó đem đi theo vết áp dụng thuật toán kalmain rồi thực hiện cho qua VGG16 để lấy mẫu dữ liệu và sau đó cho qua LSTM để huấn luyện.
 
 ***Thành viên thực hiện:*** 
