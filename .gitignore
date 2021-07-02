@@ -155,3 +155,8 @@ settings.json
 *.weights
 FileInput/Test/
 FileOutput/Detection/
+Modules/TransferValuesVGG16.npy
+Modules/LSTM_Model_18PL_10F_7240clip_12_06_21.h5
+Modules/LSTM_Model_18PL_20F_7240clip_10_06_21.5
+Modules/LSTM_Model_18PL_25F_7240clip_08_06_21.h5
+config/

@@ -6,7 +6,7 @@ from PIL import ImageTk
 from Modules import PublicModules as libs
 from Modules import LSTM_Config as cf
 import random
-from HanhViBaoLuc import RealTime_URL as RL
+import RealTime_URL as RT
 
 
 class MyThreadingVideo:
@@ -26,8 +26,8 @@ class MyThreadingVideo:
     def setFrames(self, frames: list):
         self.frames = frames
         # Tinh chinh Frame phu hop trong day
-        self._10 = RL.funget10F(self.frames)
-        self._RM =  RL.Remove_backgournd_RealTime(self._10)
+        self._10 = RT.funget10F(self.frames)
+        self._RM =  RT.Remove_backgournd_RealTime(self._10)
 ###
     def isBusy(self):
         return self.myThread.isAlive()

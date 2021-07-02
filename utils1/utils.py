@@ -17,8 +17,8 @@ def load_classes(path):
     """
     fp = open(path, "r")
     names = fp.read().split("\n")[:-1]
-    print(names)
-    print(len(names))
+    # print(names)
+    # print(len(names))
 
     return names
 
