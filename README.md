@@ -6,8 +6,10 @@ Project thực hiện train trên 7240 clip bạo lực,sau đó đem đi theo v
  - **Hướng dẫn: Thầy Ngô Dương Hà**
  - Ngô Huy Thắng - 09DHTH8 - HUFI
  - Ngô Khiêm - 09DHTH2 - HUFI
-## Từng bước thực hiện trong thuật toán
+## Từng bước thực hiện trong thuật toán 1
 ![enter image description here](https://user-images.githubusercontent.com/75923948/123732930-da254f80-d8c4-11eb-85e5-afa069e09fdd.png)
+## Từng bước thực hiện trong thuật toán 2
+![enter image description here](https://raw.githubusercontent.com/vietsaclo/HanhViBaoLuc/main/FileInput/Imgs/01.png)
 ## Mô hình tổng quát của thuật toán
 ![enter image description here](https://raw.githubusercontent.com/vietsaclo/HanhViBaoLuc/main/FileInput/Imgs/02.png)
 ## Tổng Hợp Các Link Download
